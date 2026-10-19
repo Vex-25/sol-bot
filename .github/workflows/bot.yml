@@ -1,0 +1,44 @@
+name: SOL bot
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"   # every 15 minutes (GitHub may delay runs)
+  workflow_dispatch:          # lets you press "Run workflow" to test it
+
+concurrency:
+  group: sol-bot
+  cancel-in-progress: false
+
+permissions:
+  contents: write             # needed to save trade_log.csv back to the repo
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run one bot check
+        env:
+          ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+          ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+        run: python sol_bot.py --once
+
+      - name: Save trade log
+        run: |
+          if [ -n "$(git status --porcelain trade_log.csv)" ]; then
+            git config user.name "sol-bot"
+            git config user.email "sol-bot@users.noreply.github.com"
+            git add trade_log.csv
+            git commit -m "Update trade log"
+            git push
+          fi
