@@ -41,12 +41,12 @@ from alpaca.trading.requests import GetOrdersRequest, MarketOrderRequest
 # ----------------------------- CONFIG ---------------------------------------
 SYMBOL = "SOL/USD"
 POSITION_SYMBOL = "SOLUSD"      # how Alpaca names the position/close endpoint
-CANDLE_HOURS = 4
+CANDLE_HOURS = 1
 RSI_PERIOD = 14
 RSI_BUY_BELOW = 45
 RSI_SELL_ABOVE = 55
-STOP_LOSS_PCT = 0.08
-TAKE_PROFIT_PCT = 0.04
+STOP_LOSS_PCT = 0.05
+TAKE_PROFIT_PCT = 0.03
 POSITION_FRACTION = 0.20        # 20% of current cash per trade
 MIN_ORDER_USD = 10              # safety floor, skip tiny orders
 CHECK_SECONDS = 15 * 60
