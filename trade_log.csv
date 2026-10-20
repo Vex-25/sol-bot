@@ -1,2 +1,3 @@
 time_utc,action,symbol,price,detail,rsi
 2026-10-20T12:14:11.508664+00:00,BUY,SOL/USD,103.979,"RSI < 45, spent $2000.0 (20% of cash)",44.0
+2026-10-20T17:15:47.875736+00:00,SELL,SOL/USD,106.27,RSI > 55 (entry 104.08),59.9
