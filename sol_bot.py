@@ -3,14 +3,14 @@ SOL/USD RSI mean-reversion bot (Alpaca PAPER trading)
 
 Strategy (from the group's plan)
   - Long only, one position at a time, SOL/USD only
-  - 4-hour candles, RSI(14), no trend filter
-  - BUY : last CLOSED candle has RSI < 40 and we are flat -> spend 20% of cash
+  - 1-hour candles, RSI(14), no trend filter
+  - BUY : last CLOSED candle has RSI < 45 and we are flat -> spend 20% of cash
   - SELL: whichever comes first
-        1) RSI > 60 on a closed candle
-        2) stop-loss   : price <= entry * (1 - 8%)
-        3) take-profit : price >= entry * (1 + 4%)
+        1) RSI > 55 on a closed candle
+        2) stop-loss   : price <= entry * (1 - 5%)
+        3) take-profit : price >= entry * (1 + 3%)
   - Buy/RSI-sell signals are judged once per closed candle.
-    Stop-loss / take-profit are checked on every check (every 15 minutes).
+    Stop-loss / take-profit are checked on every run of the bot.
 
 Setup (Command Prompt):
     py -m pip install alpaca-py
@@ -155,7 +155,7 @@ def step():
     pos = get_position()
     stamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     held = f"holding {float(pos.qty):.4f} SOL" if pos else "flat"
-    print(f"[{stamp}] price={price:.2f} RSI(4h closed)={r:.1f} | {held}")
+    print(f"[{stamp}] price={price:.2f} RSI({CANDLE_HOURS}h closed)={r:.1f} | {held}")
 
     if pos:
         entry = float(pos.avg_entry_price)
