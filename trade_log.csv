@@ -21,3 +21,4 @@ time_utc,action,symbol,price,detail,rsi
 2026-11-11T18:29:18.635674+00:00,SELL,SOL/USD,85.28,take-profit 3% (entry 82.74),62.2
 2026-11-12T00:57:51.835063+00:00,BUY,SOL/USD,83.743842364,"RSI < 45, spent $1971.84 (20% of cash)",41.4
 2026-11-13T23:33:46.516748+00:00,SELL,SOL/USD,77.33,stop-loss 5% (entry 83.47),29.9
+2026-11-14T03:35:28.198948+00:00,BUY,SOL/USD,75.277,"RSI < 45, spent $1944.0 (20% of cash)",26.3
